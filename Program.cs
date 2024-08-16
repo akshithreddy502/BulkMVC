@@ -1,7 +1,15 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using BulkyWeb.Data;
+using Microsoft.EntityFrameworkCore;
 
-// Add services to the container.
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container
 builder.Services.AddControllersWithViews();
+//How to Install SQL Server on a Mac
+//https://database.guide/how-to-install-sql-server-on-a-mac/
+//How to install Azure Data Studio on MAC
+/*https://database.guide/how-to-install-azure-data-studio-on-a-mac/  */
+builder.Services.AddDbContext<ApplicationDbContext>(options=>options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
